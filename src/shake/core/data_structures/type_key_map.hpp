@@ -8,13 +8,15 @@
 namespace shake {
 
 //----------------------------------------------------------------
-template< Value_T >
+template<typename Value_T>
 class TypeKeyMap
 {
 public:
-    using key_type      = type_id::TypeId;
-    using value_type    = Value_T;
-    using pair_type     = std::pair<const left_type, const right_type>;
+    using key_type          = type_id::TypeId;
+    using value_type        = Value_T;
+    using inner_map         = std::unordered_map<key_type, value_type>;
+    using iterator          = typename inner_map::iterator;
+    using const_iterator    = typename inner_map::const_iterator;
 
 public:
 
@@ -25,13 +27,60 @@ public:
     }
 
     template<typename Key_T>
-    Value_T at()
+    void try_emplace( const Key_T& value )
+    {
+        m_map.try_emplace( type_id::get<Key_T>(), value );
+    }
+
+    template<typename Key_T>
+    Value_T& at()
+    {
+        return m_map.at( type_id::get<Key_T>() );
+    }
+    
+    template<typename Key_T>
+    const Value_T& at() const
     {
         return m_map.at( type_id::get<Key_T>() );
     }
 
+    iterator        begin()         { return std::begin( m_map ); }
+    const_iterator  begin() const   { return std::begin( m_map ); }
+    iterator        end()           { return std::end( m_map );   }
+    const_iterator  end()   const   { return std::end( m_map );   }
+
+    template<typename Key_T>
+    iterator find()
+    {
+        return m_map.find( type_id::get<Key_T>() );
+    }
+
+    template<typename Key_T>
+    const_iterator find() const
+    {
+        return m_map.find( type_id::get<Key_T>() );
+    }
+
+    void erase( iterator it )
+    {
+        m_map.erase( it );
+    }
+
+    void clear() noexcept { m_map.clear(); }
+
+    inner_map& get_inner_map()
+    {
+        return m_map;
+    }
+
+    const inner_map& get_inner_map() const
+    {
+        return m_map;
+    }
+
+
 private:
-    std::unordered_map<key_type, value_type> m_map;
+    inner_map m_map;
 };
 
 } // namespace shake

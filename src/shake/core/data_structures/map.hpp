@@ -5,6 +5,8 @@
 #include <unordered_map>
 
 #include "shake/core/contracts/contracts.hpp"
+#include "shake/core/data_structures/type_erased_map.hpp"
+#include "shake/core/data_structures/type_key_map.hpp"
 
 namespace shake {
 
@@ -12,6 +14,29 @@ template<typename Key_T, typename Value_T>
 using Map = std::unordered_map<Key_T, Value_T>;
 
 namespace map {
+
+//----------------------------------------------------------------
+// type_key_map
+
+//----------------------------------------------------------------
+template<typename Key_T>
+inline bool has ( const TypeErasedMap& map )
+{
+    const auto it = map.find<Key_T>();
+    return it != std::end( map );
+}
+
+//----------------------------------------------------------------
+template<typename Key_T>
+inline bool erase_if_has ( TypeErasedMap& map )
+{
+    auto it = map.find<Key_T>();
+    bool has = it != std::end( map );
+    if ( has ) { map.erase( it ); }
+    return !has;
+}
+
+
 
 //----------------------------------------------------------------
 // ordered map
