@@ -4,6 +4,7 @@
 #include <string>
 
 #include "shake/core/log.hpp"
+#include "shake/core/data_structures/string.hpp"
 
 namespace shake {
 namespace contracts_detail {
@@ -30,42 +31,42 @@ void check_fail(const std::string& message)
 template <typename LT, typename RT> inline
 void check_eq (const LT& lhs, const RT& rhs, const std::string& message)
 {
-    check(lhs == rhs, "Condition failed: '" + std::to_string(lhs) + " == " + std::to_string(rhs) + "'. " + message);
+    check(lhs == rhs, "Condition failed: '" + shake::to_string(lhs) + " == " + shake::to_string(rhs) + "'. " + message);
 }
 
 //----------------------------------------------------------------
 template <typename LT, typename RT> inline
 void check_ne (const LT& lhs, const RT& rhs, const std::string& message)
 {
-    check(lhs != rhs, "Condition failed: '" + std::to_string(lhs) + " != " + std::to_string(rhs) + "'. " + message);
+    check(lhs != rhs, "Condition failed: '" + shake::to_string(lhs) + " != " + shake::to_string(rhs) + "'. " + message);
 }
 
 //----------------------------------------------------------------
 template <typename LT, typename RT> inline
 void check_le (const LT& lhs, const RT& rhs, const std::string& message)
 {
-    check(lhs <= rhs, "Condition failed: '" + std::to_string(lhs) + " <= " + std::to_string(rhs) + "'. " + message);
+    check(lhs <= rhs, "Condition failed: '" + shake::to_string(lhs) + " <= " + shake::to_string(rhs) + "'. " + message);
 }
 
 //----------------------------------------------------------------
 template <typename LT, typename RT> inline
 void check_lt (const LT& lhs, const RT& rhs, const std::string& message)
 {
-    check(lhs < rhs, "Condition failed: '" + std::to_string(lhs) + " < " + std::to_string(rhs) + "'. " + message);
+    check(lhs < rhs, "Condition failed: '" + shake::to_string(lhs) + " < " + shake::to_string(rhs) + "'. " + message);
 }
 
 //----------------------------------------------------------------
 template <typename LT, typename RT> inline
 void check_ge (const LT& lhs, const RT& rhs, const std::string& message)
 {
-    check(lhs >= rhs, "Condition failed: '" + std::to_string(lhs) + " >= " + std::to_string(rhs) + "'. " + message);
+    check(lhs >= rhs, "Condition failed: '" + shake::to_string(lhs) + " >= " + shake::to_string(rhs) + "'. " + message);
 }
 
 //----------------------------------------------------------------
 template <typename LT, typename RT> inline
 void check_gt (const LT& lhs, const RT& rhs, const std::string& message)
 {
-    check(lhs > rhs, "Condition failed: '" + std::to_string(lhs) + " > " + std::to_string(rhs) + "'. " + message);
+    check(lhs > rhs, "Condition failed: '" + shake::to_string(lhs) + " > " + shake::to_string(rhs) + "'. " + message);
 }
 
 //----------------------------------------------------------------
@@ -83,7 +84,7 @@ inline const std::string ffl_string
     const int           line
 )
 {
-    return "[ File: " + file + ", Function: " + function + ", Line: " + std::to_string( line ) + " ] ";
+    return "[ File: " + file + ", Function: " + function + ", Line: " + shake::to_string( line ) + " ] ";
 }
 
 //----------------------------------------------------------------

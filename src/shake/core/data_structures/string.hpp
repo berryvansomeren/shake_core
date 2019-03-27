@@ -6,6 +6,26 @@
 #include <cctype>
 
 namespace shake     {
+
+//----------------------------------------------------------------
+template< typename T >
+inline std::string to_string( const T& t )
+{
+    return std::to_string( t );
+}
+
+inline std::string to_string( const std::string& t )
+{
+    return t;
+}
+
+inline std::string to_string( const char* t )
+{
+    return std::string( t );
+}
+
+
+
 namespace string    {
 
 //----------------------------------------------------------------
@@ -31,6 +51,11 @@ inline bool equals_any_of(const std::string& lhs, const std::initializer_list<st
 {
     return std::any_of(std::begin(rhs), std::end(rhs), [& lhs](const std::string& s) { return lhs == s; });
 }
+
+
+
+
+
 
 } // namespace string
 } // namespace shake
