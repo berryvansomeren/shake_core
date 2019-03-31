@@ -8,7 +8,10 @@ namespace shake {
 //----------------------------------------------------------------
 // Used to cast things to strings
 template<typename T>
-inline std::string lexical_cast ( const T& t ) { return std::to_string( t ); }
+inline std::string lexical_cast ( const T& t )              { return std::to_string( t ); }
+inline std::string lexical_cast ( const std::string& t )    { return t; }
+inline std::string lexical_cast ( const char* t )           { return std::string( t ); }
+
 
 //----------------------------------------------------------------
 // Used to cast strings to things
