@@ -3,6 +3,31 @@
 namespace shake {
 
 //----------------------------------------------------------------
+// Look at
+
+Transform3D& Transform3D::look_at_position( glm::vec3 target_position )
+{
+    const auto camera_position = get_translation();
+    const auto camera_direction = glm::normalize( camera_position - target_position );
+    
+    const auto yaw = glm::atan( camera_direction.y / camera_direction.x );
+    const auto pitch = glm::atan( glm::length( glm::vec2( camera_direction.x, camera_direction.y ) ) / camera_direction.z );
+  
+    m_mat = {};
+    translate( camera_position );
+    yaw_relative( glm::degrees( yaw ) );
+    pitch_relative( glm::degrees( pitch ) );
+    
+    return (*this);
+}
+
+Transform3D& Transform3D::look_in_direction( glm::vec3 direction )
+{
+    m_mat = glm::lookAt( get_translation(), get_translation() + direction, get_world_up() );
+    return (*this);
+}
+
+//----------------------------------------------------------------
 // Translation
 
 glm::vec3 Transform3D::get_translation() const
@@ -18,10 +43,9 @@ Transform3D& Transform3D::set_translation( glm::vec3 translation )
     return (*this);
 }
 
-Transform3D& Transform3D::translate( glm::vec3 translation )
+void Transform3D::translate( glm::vec3 translation )
 {
     m_mat = glm::translate(m_mat, translation);
-    return (*this);
 }
 
 //----------------------------------------------------------------

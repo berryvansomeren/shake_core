@@ -15,11 +15,14 @@ public:
 public:
     /* ctor */      Transform3D     () : m_mat{} { /* no-op */ }
 
+    Transform3D&    look_at_position    ( glm::vec3 position );
+    Transform3D&    look_in_direction   ( glm::vec3 position );
+
     //----------------------------------------------------------------
     // Translation
     glm::vec3       get_translation ()	const;
     Transform3D&    set_translation ( glm::vec3 translation );
-    Transform3D&    translate       ( glm::vec3 translation );
+    void            translate       ( glm::vec3 translation );
 
     //----------------------------------------------------------------
     // Scale

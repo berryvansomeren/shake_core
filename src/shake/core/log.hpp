@@ -82,7 +82,7 @@ inline const std::string prefix_ffl
 )
 {
     auto result = std::string { "" };
-    DEBUG_ONLY( "[ File: " + file + ", Function: " + function + ", Line: " + std::to_string( line ) + " ] " );
+    result += "[ File: " + file + ", Function: " + function + ", Line: " + std::to_string( line ) + " ] ";
     result += message;
     return result;
 }
