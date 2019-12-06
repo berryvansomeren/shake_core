@@ -3,7 +3,7 @@
 
 #include <unordered_map>
 
-#include "shake/core/types/type_id.hpp"
+#include "shake/core/type_traits/type_id.hpp"
 
 namespace shake {
 

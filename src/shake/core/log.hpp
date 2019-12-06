@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-#include "shake/core/macro_debug_only.hpp"
+#include "shake/core/macros/macro_debug_only.hpp"
 
 namespace shake {
 namespace log_detail {

@@ -1,7 +1,7 @@
 #ifndef MACRO_STRONGLY_TYPED_ALIAS_HPP
 #define MACRO_STRONGLY_TYPED_ALIAS_HPP
 
-#include "shake/core/types/tagged_type.hpp"
+#include "shake/core/type_traits/tagged_type.hpp"
 
 //----------------------------------------------------------------
 // Just a convenience macro that creates the tag type for you,

@@ -4,7 +4,7 @@
 #include <string>
 
 #include "shake/core/log.hpp"
-#include "shake/core/types/lexical_cast.hpp"
+#include "shake/core/type_traits/lexical_cast.hpp"
 
 namespace shake {
 namespace contracts_detail {
