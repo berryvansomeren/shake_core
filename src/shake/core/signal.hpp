@@ -3,8 +3,8 @@
 
 #include <functional>
 
-#include "shake/core/data_structures/queue.hpp"
-#include "shake/core/data_structures/map.hpp"
+#include "shake/core/std/queue.hpp"
+#include "shake/core/std/map.hpp"
 #include "shake/core/contracts/contracts.hpp"
 #include "shake/core/macros/macro_debug_only.hpp"
 

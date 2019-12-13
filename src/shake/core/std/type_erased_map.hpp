@@ -3,7 +3,7 @@
 
 #include <any>
 
-#include "shake/core/data_structures/type_key_map.hpp"
+#include "shake/core/std/type_key_map.hpp"
 
 namespace shake {
 

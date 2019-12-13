@@ -1,7 +1,7 @@
 #ifndef LEXICAL_CAST_HPP
 #define LEXICAL_CAST_HPP
 
-#include "shake/core/data_structures/string.hpp"
+#include "shake/core/std/string.hpp"
 
 namespace shake {
 

@@ -13,6 +13,7 @@ float convert_degrees_to_radians( const float degrees )
     return degrees * ( math::pi_f / 180.f );
 }
 
+//----------------------------------------------------------------
 inline
 float convert_radians_to_degrees( const float radians )
 {
@@ -28,6 +29,7 @@ glm::vec2 convert_cartesian_to_polar( const float x, const float y )
     return { r, a };
 }
 
+//----------------------------------------------------------------
 inline
 glm::vec2 convert_cartesian_to_polar( const glm::vec2& cartesian )
 {
@@ -43,6 +45,7 @@ glm::vec2 convert_polar_to_cartesian( const float radius, const float angle )
     return { x, y };
 }
 
+//----------------------------------------------------------------
 inline
 glm::vec2 convert_polar_to_cartesian( const glm::vec2& polar )
 {

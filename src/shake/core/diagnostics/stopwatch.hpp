@@ -5,7 +5,7 @@
 
 namespace shake {
 
-//
+//----------------------------------------------------------------
 class Stopwatch
 {
 public:
@@ -21,14 +21,14 @@ public:
         m_begin = std::chrono::high_resolution_clock::now();
     }
 
-    inline float get()
+    inline double get()
     {
         m_end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<float, std::milli> ms = m_end - m_begin;
+        std::chrono::duration<double, std::milli> ms = m_end - m_begin;
         return ms.count();
     }
 
-    inline float get_and_reset()
+    inline double get_and_reset()
     {
         const auto result = get();
         reset();

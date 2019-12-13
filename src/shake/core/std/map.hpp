@@ -5,8 +5,8 @@
 #include <unordered_map>
 
 #include "shake/core/contracts/contracts.hpp"
-#include "shake/core/data_structures/type_erased_map.hpp"
-#include "shake/core/data_structures/type_key_map.hpp"
+#include "shake/core/std/type_erased_map.hpp"
+#include "shake/core/std/type_key_map.hpp"
 
 namespace shake {
 
