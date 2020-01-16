@@ -10,9 +10,6 @@ namespace shake {
 class Transform2D
 {
 public:
-    using Ptr = std::shared_ptr<Transform2D>;
-
-public:
     /* ctor */      Transform2D     () : m_mat{} { /* no-op */ }
 
     //----------------------------------------------------------------

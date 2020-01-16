@@ -10,9 +10,6 @@ namespace shake {
 class Transform3D
 {
 public:
-    using Ptr = std::shared_ptr<Transform3D>;
-
-public:
     /* ctor */      Transform3D     () : m_mat{} { /* no-op */ }
 
     Transform3D&    look_at_position    ( glm::vec3 position );
