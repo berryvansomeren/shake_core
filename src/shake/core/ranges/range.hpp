@@ -16,7 +16,7 @@ namespace shake {
 // You can construct a const range over a const container.
 // You can construct a const range over a non-const container.
 // You can construct a non-const range over a non-const container.
-// you can NOT construct a non-const range over a const container.
+// You can NOT construct a non-const range over a const container.
 template<typename iterator_t>
 class Range
 {
@@ -42,9 +42,9 @@ private:
 };
 
 //----------------------------------------------------------------
-// constructs a non-const range which means the elements that are iterated over can be changed.
+// Constructs a non-const range which means the elements that are iterated over can be changed.
 template<typename container_t>
-Range<typename container_t::iterator> create_range
+Range<typename container_t::iterator> range
 (
     container_t& v
 )
@@ -57,14 +57,14 @@ Range<typename container_t::iterator> create_range
 }
 
 //----------------------------------------------------------------
-// constructs a const range, which means the elements that are iterated over could not be changed.
+// Constructs a const range, which means the elements that are iterated over could not be changed.
 template<typename container_t>
-Range<typename container_t::const_iterator> create_const_range
+Range<typename container_t::const_iterator> const_range
 (
     container_t& v
 )
 {
-    return Range<typename container_t::const_iterator>
+    return Range
     {
         std::cbegin ( v ),
         std::cend   ( v )

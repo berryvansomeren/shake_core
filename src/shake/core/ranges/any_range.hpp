@@ -1,10 +1,10 @@
-#ifndef ANY_RANGE_HPP
-#define ANY_RANGE_HPP
+#ifndef ANY_ITERATOR_HPP
+#define ANY_ITERATOR_HPP
 
 #include <functional>
 #include <any>
 
-#include "core/ranges/range.hpp"
+#include "range.hpp"
 
 namespace shake {
 
@@ -54,6 +54,7 @@ public:
 
     AnyIterator& operator++()
     {
+        // Simply call type-erased replacement
         m_type_erased_functions.preincrement( m_wrapped_iterator );
         return *this;
     }
@@ -67,6 +68,7 @@ public:
 
     bool operator==( const AnyIterator& other ) const
     {
+        // Simply call type-erased replacement
         return m_type_erased_functions.equality( get_internal_iterator(), other.get_internal_iterator() );
     }
 
@@ -77,11 +79,12 @@ public:
 
     reference operator*()
     {
+        // Simply call type-erased replacement
         return m_type_erased_functions.dereference( m_wrapped_iterator );
     }
 
 public:
-    std::any                m_wrapped_iterator;         // copy of the iterator, but the iterator still acts as a reference to the same elements!
+    std::any                m_wrapped_iterator;         
     TypeErasedFunctions     m_type_erased_functions;
 };
 
@@ -91,14 +94,14 @@ using AnyRange = Range<AnyIterator<T>>;
 
 //----------------------------------------------------------------
 template<typename data_t, typename iterator_t>
-AnyRange<data_t> create_any_range
+AnyRange<data_t> make_any_range
 (
     iterator_t begin,
     iterator_t end
 )
 {
-    // The type erased functions are there to remember how to operate on the any's
-    // without having to specify the underlying types in their signature
+    // These type erased functions are to remember how to operate on the any's
+    // without having to specify the underlying types in their signature.
     const auto type_erased_functions = typename AnyIterator<data_t>::TypeErasedFunctions
     {
         // Dereference
@@ -117,15 +120,13 @@ AnyRange<data_t> create_any_range
         { return ( std::any_cast<const iterator_t&>( lhs ) == std::any_cast<const iterator_t&>( rhs ) ); } )
     };
 
-    return AnyRange<data_t>
+    return Range
     {
-        AnyIterator<data_t>( begin,    type_erased_functions ),
-        AnyIterator<data_t>( end,      type_erased_functions )
+        AnyIterator { begin,    type_erased_functions },
+        AnyIterator { end,      type_erased_functions }
     };
 }
 
-
-
 } // namespace shake
 
-#endif // ANY_RANGE_HPP
+#endif // ANY_ITERATOR_HPP

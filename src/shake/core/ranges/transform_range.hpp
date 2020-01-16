@@ -1,22 +1,22 @@
-#ifndef TRANSFORM_RANGE_HPP
-#define TRANSFORM_RANGE_HPP
+#ifndef TRANSFORM_ITERATOR_HPP
+#define TRANSFORM_ITERATOR_HPP
 
 #include <functional>
 
-#include "core/ranges/range.hpp"
+#include "range.hpp"
 
 namespace shake {
 
 //----------------------------------------------------------------
-// Constructs a range over the elements, transforming them into new types,
-// If non-const and capturing by reference, even the original values can be modified.
-// If combined with an index range, and a function that captures multiple ranges,
-// the transform iterator can be used to iterate over multiple ranges at once.
+// Iterates over a range of types while exposing them as different types, 
+// by transforming them using a provided function.
+// If non-const and capturing by reference, 
+// even the original values can be modified through the transformed types.
 template<typename in_t, typename out_t, typename iterator_t>
 class TransformIterator
 {
 public:
-    using functor_t = std::function<out_t&(in_t&)>;
+    using functor_t = std::function<out_t(in_t)>;
 
 public:
     // iterator traits
@@ -27,6 +27,7 @@ public:
     using reference         = value_type&;
 
 public:
+
     explicit
     TransformIterator
     (
@@ -45,8 +46,9 @@ public:
     bool operator==(TransformIterator other) const { return get_internal_iterator() == other.get_internal_iterator(); }
     bool operator!=(TransformIterator other) const { return !(*this == other); }
 
-    reference operator*() const
+    value_type operator*() const
     {
+        // Use the provided function to transforms the types that we iterate over
         return std::invoke( m_functor, *m_iterator );
     }
 
@@ -61,21 +63,19 @@ using TransformRange = Range<TransformIterator<in_t, out_t, iterator_t>>;
 
 //----------------------------------------------------------------
 template<typename in_t, typename out_t, typename range_t>
-TransformRange< in_t, out_t, typename range_t::iterator> create_transform_range
+TransformRange< in_t, out_t, typename range_t::iterator> transform
 (
-    range_t v, // could a range over a const or non-const container
+    range_t v, // could be a range over a const or non-const container
     const typename TransformIterator< in_t, out_t, typename range_t::iterator >::functor_t& f
 )
 {
-    return TransformRange<in_t, out_t, typename range_t::iterator>
+    return Range
     {
-        iterator_t( std::begin( v ), f ),
-        iterator_t( std::end  ( v ), f )
+        TransformIterator { std::begin( v ), f },
+        TransformIterator { std::end  ( v ), f }
     };
 }
 
-
-
 } // namespace shake
 
-#endif // TRANSFORM_RANGE_HPP
+#endif // TRANSFORM_ITERATOR_HPP
