@@ -33,8 +33,8 @@ public:
         , m_end     { end }
     { }
 
-    iterator    begin() const  { return m_begin;  }
-    iterator    end()   const  { return m_end;    }
+    inline iterator    begin() const  { return m_begin;  }
+    inline iterator    end()   const  { return m_end;    }
 
 private:
     iterator    m_begin;

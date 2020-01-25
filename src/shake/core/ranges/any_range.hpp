@@ -1,5 +1,5 @@
-#ifndef ANY_ITERATOR_HPP
-#define ANY_ITERATOR_HPP
+#ifndef ANY_RANGE_HPP
+#define ANY_RANGE_HPP
 
 #include <functional>
 #include <any>
@@ -129,4 +129,4 @@ AnyRange<data_t> make_any_range
 
 } // namespace shake
 
-#endif // ANY_ITERATOR_HPP
+#endif // ANY_RANGE_HPP

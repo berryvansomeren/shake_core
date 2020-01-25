@@ -1,5 +1,5 @@
-#ifndef INDEX_ITERATOR_HPP
-#define INDEX_ITERATOR_HPP
+#ifndef INDEX_RANGE_HPP
+#define INDEX_RANGE_HPP
 
 #include <cstddef>
 #include <iterator>
@@ -53,7 +53,7 @@ private:
 using IndexRange = Range<IndexIterator>;
 
 //----------------------------------------------------------------
-IndexRange range
+inline IndexRange range
 (
     const std::size_t& begin_index,
     const std::size_t& end_index
@@ -67,7 +67,7 @@ IndexRange range
 }
 
 //----------------------------------------------------------------
-IndexRange range
+inline IndexRange range
 (
     const std::size_t& end_index
 )
@@ -77,4 +77,4 @@ IndexRange range
 
 } // namespace shake
 
-#endif // INDEX_ITERATOR_HPP
+#endif // INDEX_RANGE_HPP

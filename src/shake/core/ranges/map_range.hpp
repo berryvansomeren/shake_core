@@ -6,7 +6,7 @@
 #include <map>
 
 #include "range.hpp"
-#include "transform_iterator.hpp"
+#include "transform_range.hpp"
 
 namespace shake {
 

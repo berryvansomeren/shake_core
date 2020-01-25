@@ -1,5 +1,5 @@
-#ifndef TRANSFORM_ITERATOR_HPP
-#define TRANSFORM_ITERATOR_HPP
+#ifndef TRANSFORM_RANGE_HPP
+#define TRANSFORM_RANGE_HPP
 
 #include <functional>
 
@@ -78,4 +78,4 @@ TransformRange< in_t, out_t, typename range_t::iterator> transform
 
 } // namespace shake
 
-#endif // TRANSFORM_ITERATOR_HPP
+#endif // TRANSFORM_RANGE_HPP

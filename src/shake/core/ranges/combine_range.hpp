@@ -1,5 +1,5 @@
-#ifndef COMBINE_ITERATOR_HPP
-#define COMBINE_ITERATOR_HPP
+#ifndef COMBINE_RANGE_HPP
+#define COMBINE_RANGE_HPP
 
 #include <tuple>
 
@@ -123,4 +123,4 @@ auto combine
 
 } // namespace shake
 
-#endif // COMBINE_ITERATOR_HPP
+#endif // COMBINE_RANGE_HPP
